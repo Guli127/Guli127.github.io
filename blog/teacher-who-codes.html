@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Both sides were reasonable. The requirement was broken. — Gloria Gu</title>
+  <meta name="description" content="Two mirror-image failures in school software: the wishlist nobody can build, and the elegant feature nobody opens. Neither side did anything wrong — and why more meetings don't fix it." />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Gloria Gu" />
+  <meta property="og:title" content="Both sides were reasonable. The requirement was broken." />
+  <meta property="og:description" content="Two mirror-image failures in school software: the wishlist nobody can build, and the elegant feature nobody opens. Why more meetings don't fix either one." />
+  <meta property="og:url" content="SITE_URL/blog/teacher-who-codes.html" />
+  <meta property="og:image" content="SITE_URL/assets/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">GG</span>
+        <span class="brand-name">Gloria Gu</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about"><span class="i18n en">About</span><span class="i18n zh">关于</span></a></li>
+        <li><a href="../index.html#mentora">Mentora</a></li>
+        <li><a href="../index.html#projects"><span class="i18n en">Projects</span><span class="i18n zh">项目</span></a></li>
+        <li><a href="../index.html#writing"><span class="i18n en">Writing</span><span class="i18n zh">写作</span></a></li>
+        <li>
+          <div class="lang-switch" role="group" aria-label="Language / 语言">
+            <button type="button" data-set-lang="en" class="lang-btn is-active">EN</button>
+            <button type="button" data-set-lang="zh" class="lang-btn">中</button>
+          </div>
+        </li>
+        <li><a href="../index.html#contact" class="nav-cta"><span class="i18n en">Get in touch</span><span class="i18n zh">联系我</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="post-page">
+    <div class="container">
+      <a href="../index.html#writing" class="post-back">
+        <span class="i18n en">← Back to writing</span>
+        <span class="i18n zh">← 返回写作</span>
+      </a>
+
+      <!-- ============ ENGLISH ============ -->
+      <article class="i18n en">
+        <h1>Both sides were reasonable. The requirement was broken.</h1>
+        <div class="post-meta">Aug 30, 2026 · 5 min read</div>
+
+        <p>
+          I've watched school software fail in two directions, and they are
+          almost mirror images of each other.
+        </p>
+
+        <h2>Failure one: the wishlist nobody can build</h2>
+
+        <p>
+          Teachers are asked what they want, and they answer honestly. The
+          result is a document full of sentences like “the system should
+          automatically remind the relevant teacher when a student's
+          performance is abnormal”. Every word of that is reasonable, and none
+          of it is buildable. What counts as abnormal? Compared to whom? Over
+          what window? Who is the relevant teacher when a student is failing
+          one subject and thriving in four? Does the reminder go out at
+          midnight?
+        </p>
+
+        <p>
+          An engineer receiving that sentence has to invent answers to five
+          questions they are not qualified to answer, and they will — quietly,
+          in code, in an afternoon. The teacher then finds the feature useless
+          and concludes that the system doesn't understand schools. Both people
+          behaved reasonably. The requirement was the thing that was broken.
+        </p>
+
+        <h2>Failure two: the elegant feature nobody opens</h2>
+
+        <p>
+          Now the mirror image. A good engineering team, working from clean
+          principles, builds a beautifully general gradebook with configurable
+          everything. It takes eleven clicks to record that a student didn't
+          hand in their homework. A teacher has thirty students and four
+          minutes between lessons. By week three they are recording it in a
+          notebook again, and the expensive system is a very pretty read-only
+          view of nothing.
+        </p>
+
+        <p>
+          Nobody on that team did anything wrong either. They just never had to
+          use the thing they made on a Thursday, with a queue at the door.
+        </p>
+
+        <h2>Why more meetings don't fix it</h2>
+
+        <p>
+          The standard remedy is to put both groups in a room more often. It
+          helps a little, and it has a ceiling, because the two groups don't
+          fail at communicating — they fail at knowing which details matter.
+          The teacher can't tell which half of their sentence is the hard half.
+          The engineer can't tell which of their fifteen reasonable defaults is
+          the one that will empty the database. Neither can flag what they don't
+          know they know.
+        </p>
+
+        <p>
+          What closes that gap reliably is not a better meeting. It is one
+          person who has done both jobs, holding both models at once.
+        </p>
+
+        <h2>Three examples from my own specs</h2>
+
+        <p>
+          <strong>The OCR output has to stay editable.</strong> When I specified
+          photo capture for my marking agent, the natural design was: photo in,
+          text out, grade out. I insisted the extracted text remain editable
+          before anything downstream runs. Not because editing is a nice
+          feature — because a misread “not” in a student's answer becomes a lost
+          mark, becomes a wrong error diagnosis, becomes the wrong practice
+          question, and the teacher never sees where it went wrong. One
+          affordance stops an error from travelling.
+        </p>
+
+        <p>
+          <strong>The total is added up outside the model.</strong> Language
+          models are unreliable at arithmetic in a way that is easy to forget
+          when the rest of the output looks fluent. A teacher who has ever
+          returned a paper with the wrong total knows exactly how much that
+          costs in trust — one visible slip and the next twenty correct grades
+          get re-checked by hand, which is worse than no tool at all.
+        </p>
+
+        <p>
+          <strong>The parent-visibility switch defaults to off.</strong> Not a
+          privacy checkbox for its own sake, but because a teacher who thinks a
+          parent is reading writes worse notes, and every warning feature we
+          wanted to build reads from those notes. I've written about that one
+          <a href="parent-visibility.html">separately</a>.
+        </p>
+
+        <p>
+          None of those three came out of a model choice or an architecture
+          decision. All three came from having stood in the classroom the
+          feature lands in. And all three are the kind of thing that sounds
+          obvious the moment someone says it out loud — which is precisely why
+          you need someone in the room who will.
+        </p>
+
+        <h2>The uncomfortable half</h2>
+
+        <p>
+          The obligation runs both ways, and this is the part teachers like less.
+          If I want a say in how the system is built, I have to be able to build.
+          Not at a professional engineer's level — but well enough to know what
+          I'm asking for, well enough that “can we just…” is a question I've
+          already half-answered, and well enough to prototype the thing instead
+          of describing it for six months.
+        </p>
+
+        <p>
+          That is what I'm doing now, and it is why there is a working prototype
+          on the front page of this site rather than a slide about one.
+        </p>
+      </article>
+
+      <!-- ============ 中文 ============ -->
+      <article class="i18n zh">
+        <h1>两边都没做错，坏掉的是那条需求</h1>
+        <div class="post-meta">2026 年 8 月 30 日 · 阅读约 5 分钟</div>
+
+        <p>
+          我见过校园软件从两个相反的方向失败，而它们几乎是彼此的镜像。
+        </p>
+
+        <h2>失败一：没人能实现的愿望清单</h2>
+
+        <p>
+          有人来问老师想要什么，老师如实回答。于是文档里出现这样的句子：「当学生表现异常时，系统应自动提醒相关老师。」这句话每个字都合理，但整句都无法实现。什么叫异常？和谁比？看多长的窗口？一个学生一门挂科、四门优秀时，「相关老师」是谁？提醒是不是半夜也发？
+        </p>
+
+        <p>
+          拿到这句话的工程师，必须替五个他没有资格回答的问题发明答案——而他会的，安静地，在代码里，一个下午就完成了。老师随后发现这个功能没用，并得出结论：这系统不懂学校。两个人的行为都合理，坏掉的是那条需求本身。
+        </p>
+
+        <h2>失败二：没人点开的优雅功能</h2>
+
+        <p>
+          再看镜像的另一面。一支优秀的工程团队，从干净的原则出发，做出一个高度通用、什么都可配置的成绩册。记录「某个学生作业没交」需要点十一下。而老师带三十个学生，两节课之间只有四分钟。到第三周，他又开始记在本子上了，那套昂贵的系统变成一个非常好看的、只读的空视图。
+        </p>
+
+        <p>
+          这个团队也没有做错什么。他们只是从来不必在某个周四、门口还排着队的时候，使用自己做出来的东西。
+        </p>
+
+        <h2>为什么多开会解决不了</h2>
+
+        <p>
+          常见的解法是让两拨人多进一个会议室。这有用，但很快触顶——因为这两拨人失败的地方不是「沟通不畅」，而是「不知道哪个细节要紧」。老师说不出自己那句话里，难的是哪半句；工程师说不出自己那十五个合理的默认值里，哪一个会把数据库掏空。他们都无法标出自己「不知道自己知道」的东西。
+        </p>
+
+        <p>
+          能稳定补上这条缝的，不是一场更好的会议，而是一个两边都干过、同时装着两套模型的人。
+        </p>
+
+        <h2>我自己写的三条需求</h2>
+
+        <p>
+          <strong>OCR 的输出必须保持可编辑。</strong>给批改 Agent 写拍照上传这一步时，最自然的设计是：照片进，文本出，分数出。我坚持要求识别出的文本在任何下游步骤运行之前保持可编辑。不是因为「可编辑」是个好功能，而是因为学生答案里被识错的一个 not，会变成一分丢失，变成一个错误的错因判断，变成一道错的练习题——而老师永远看不到它是从哪一步歪掉的。一个小小的可编辑，拦住了一个会长途旅行的错误。
+        </p>
+
+        <p>
+          <strong>总分在模型之外计算。</strong>语言模型在算术上的不可靠，很容易被它其余部分流畅的输出掩盖过去。任何一个曾经把总分算错、还把卷子发下去过的老师，都清楚这在信任上的代价：一次可见的失误之后，接下来二十个正确的分数都会被人工重新核对一遍——那比没有这个工具还糟。
+        </p>
+
+        <p>
+          <strong>家长可见性开关默认关闭。</strong>这不是为了隐私而勾的一个复选框，而是因为：一个认为家长正在阅读的老师，会把记录写得更差；而我们想做的每一个预警功能，读的都是那些记录。这一条我<a href="parent-visibility.html">单独写过</a>。
+        </p>
+
+        <p>
+          这三条，没有一条来自模型选型或架构决策。三条全都来自「我站在这个功能最终落地的那间教室里」。而且三条在被说出口的那一刻都显得理所当然——这恰恰是为什么，房间里需要有一个会把它说出口的人。
+        </p>
+
+        <h2>不太舒服的那一半</h2>
+
+        <p>
+          这份义务是双向的，而这半边是老师们不太喜欢的部分。如果我想在系统怎么做上有发言权，我就必须能动手做。不需要达到职业工程师的水平，但要好到足以知道自己在要什么，好到「能不能顺手加个……」这种问题我自己已经答了一半，也好到可以把东西直接做出来，而不是用六个月去描述它。
+        </p>
+
+        <p>
+          这就是我现在在做的事，也是为什么这个网站首页上放的是一个能点的原型，而不是一页讲原型的 slide。
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Gloria Gu.</p>
+      <a href="../index.html#top" class="to-top">
+        <span class="i18n en">Back to home ↑</span>
+        <span class="i18n zh">回到首页 ↑</span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

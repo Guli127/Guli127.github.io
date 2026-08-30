@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gloria Gu — AI &amp; Educational Technology · Computer Science Educator</title>
+  <meta name="description" content="Gloria Gu — A-Level and IGCSE Computer Science / IT teacher, now MSc student in AI and Educational Technology at The Education University of Hong Kong. Building Mentora, an AI teaching-loop agent for international-curriculum teachers." />
+
+  <!-- Link preview (LinkedIn, WhatsApp, WeChat, Twitter).
+       SITE_URL below must be the real published address — LinkedIn ignores relative image paths. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gloria Gu" />
+  <meta property="og:title" content="Gloria Gu — I teach students to think in code." />
+  <meta property="og:description" content="A-Level and IGCSE Computer Science teacher, now MSc AI &amp; Educational Technology at EdUHK. Building Mentora, an AI teaching-loop agent — with an interactive prototype you can click through." />
+  <meta property="og:url" content="SITE_URL/" />
+  <meta property="og:image" content="SITE_URL/assets/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Gloria Gu — I teach students to think in code. Now I'm building the tool I needed." />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <header class="site-header" id="top">
+    <nav class="nav container">
+      <a href="#top" class="brand">
+        <span class="brand-mark">GG</span>
+        <span class="brand-name">Gloria Gu</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about"><span class="i18n en">About</span><span class="i18n zh">关于</span></a></li>
+        <li><a href="#experience"><span class="i18n en">Experience</span><span class="i18n zh">经历</span></a></li>
+        <li><a href="#mentora">Mentora</a></li>
+        <li><a href="#projects"><span class="i18n en">Projects</span><span class="i18n zh">项目</span></a></li>
+        <li><a href="#writing"><span class="i18n en">Writing</span><span class="i18n zh">写作</span></a></li>
+        <li>
+          <div class="lang-switch" role="group" aria-label="Language / 语言">
+            <button type="button" data-set-lang="en" class="lang-btn is-active">EN</button>
+            <button type="button" data-set-lang="zh" class="lang-btn">中</button>
+          </div>
+        </li>
+        <li><a href="#contact" class="nav-cta"><span class="i18n en">Get in touch</span><span class="i18n zh">联系我</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">
+            <span class="i18n en">MSc AI &amp; Educational Technology · EdUHK</span>
+            <span class="i18n zh">香港教育大学 · 人工智能与教育科技硕士在读</span>
+          </p>
+          <h1>
+            <span class="i18n en">I teach students to <span class="accent">think in code</span>.</span>
+            <span class="i18n zh">我教学生<span class="accent">用代码思考</span>。</span>
+          </h1>
+          <p class="lede">
+            <span class="i18n en">For the past few years I've helped curious teenagers turn ideas into working software — from their first <code>print("Hello")</code> to projects they're proud to show people. My classroom is hands-on, collaborative and unafraid of mistakes; we make plenty, on purpose.</span>
+            <span class="i18n zh">这几年，我带着一群好奇的中学生，把想法变成真的能跑起来的东西——从第一行 <code>print("Hello")</code>，到他们愿意拿给别人看的作品。我的课要动手、要合作，也不怕出错：我们出很多错，而且是故意的。</span>
+          </p>
+          <div class="hero-turn">
+            <p class="ht-setup">
+              <span class="i18n en">But the hardest part of the job was never the teaching.</span>
+              <span class="i18n zh">但这份工作最难的部分，从来不是「教」。</span>
+            </p>
+            <p class="ht-line">
+              <span class="i18n en">Now I'm building the tool I needed.</span>
+              <span class="i18n zh">现在，我在做当年最想要的那个工具。</span>
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a href="#mentora" class="btn btn-primary">
+              <span class="i18n en">Try the Mentora prototype</span>
+              <span class="i18n zh">试用 Mentora 原型</span>
+            </a>
+            <a href="assets/Gloria-Gu-CV.pdf" class="btn btn-ghost" download>
+              <span class="i18n en">Download CV</span>
+              <span class="i18n zh">下载简历</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span class="i18n en">Say hello →</span>
+              <span class="i18n zh">联系我 →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-portrait">
+          <div class="portrait-frame">
+            <img src="assets/portrait.jpg" alt="Gloria Gu" width="627" height="900" />
+          </div>
+          <div class="portrait-badge">
+            <span class="dot"></span>
+            <span class="i18n en">Open to EdTech internships in Hong Kong</span>
+            <span class="i18n zh">在港寻找 EdTech 实习机会</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">01 — <span class="i18n en">About</span><span class="i18n zh">关于</span></span>
+          <h2>
+            <span class="i18n en">Most school software is designed for a classroom nobody in the room has taught.</span>
+            <span class="i18n zh">大多数校园软件，是为一间没有人真正教过的教室设计的。</span>
+          </h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-body">
+            <p>
+              <span class="i18n en">The hardest part was everything around the teaching — and most of the software meant to carry that load was built by people who have never done the job. Teachers write wishlists engineers can't build; engineers ship features teachers quietly stop opening. I'm a Computer Science teacher who builds, so the work I do sits in the gap between the two.</span>
+              <span class="i18n zh">最难的是「教」之外的那些事——而本该分担这些事的软件，大多出自没做过这份工作的人之手。老师提的需求工程师做不出来，工程师做出来的功能老师慢慢就不点了。我是一个会自己动手做东西的计算机老师，我做的事，就在这道缝里。</span>
+            </p>
+
+            <ul class="strengths">
+              <li>
+                <strong><span class="i18n en">I know what actually happens in a classroom.</span><span class="i18n zh">我知道教室里真正发生的是什么。</span></strong>
+                <span class="i18n en">Not the version in the pitch deck — the Thursday with thirty scripts to mark, two parents to call, and tomorrow's lesson still unplanned.</span>
+                <span class="i18n zh">不是宣讲稿里的那个版本，而是这样的周四：三十份卷子没批，两个家长电话没打，明天的课还没备。</span>
+              </li>
+              <li>
+                <strong><span class="i18n en">I build things myself.</span><span class="i18n zh">东西我自己动手做。</span></strong>
+                <span class="i18n en">Not just write the brief and wait. This site and the working prototype below are mine — no agency, no template.</span>
+                <span class="i18n zh">不只是写完需求等着别人交付。这个网站，还有下面那个能点的原型，都是我自己做的——没有外包，也没有套模板。</span>
+              </li>
+              <li>
+                <strong><span class="i18n en">I can explain it to people who don't code.</span><span class="i18n zh">我能把它讲给不写代码的人听。</span></strong>
+                <span class="i18n en">Teachers, school leaders, parents. A feature you can't explain to a form tutor won't survive its first week in a real school.</span>
+                <span class="i18n zh">老师、管理层、家长。一个没法跟班主任讲清楚的功能，在真实学校里活不过第一周。</span>
+              </li>
+            </ul>
+
+            <p>
+              <span class="i18n en">Right now all three point at one problem: what happens <em>after</em> a teacher marks a paper. I'm reading for an <strong>MSc in Artificial Intelligence and Educational Technology</strong> at The Education University of Hong Kong, and building <a href="#mentora">Mentora</a> — an agent for the marking loop.</span>
+              <span class="i18n zh">现在，这三件事都指向同一个问题：老师批完一份卷子<em>之后</em>，会发生什么。我在香港教育大学读<strong>人工智能与教育科技理学硕士</strong>，同时在做 <a href="#mentora">Mentora</a>——一个面向批改闭环的 Agent。</span>
+            </p>
+          </div>
+
+          <aside class="about-aside">
+            <h3><span class="i18n en">At a glance</span><span class="i18n zh">一览</span></h3>
+            <dl class="facts">
+              <div>
+                <dt><span class="i18n en">Based in</span><span class="i18n zh">所在地</span></dt>
+                <dd><span class="i18n en">Hong Kong SAR</span><span class="i18n zh">中国香港特别行政区</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Teaches</span><span class="i18n zh">教授</span></dt>
+                <dd><span class="i18n en">Python · Java · Web development · Machine learning · VR/AR · IoT · SQL &amp; databases</span><span class="i18n zh">Python · Java · 网页开发 · 机器学习 · VR/AR · 物联网 · SQL 与数据库</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Levels</span><span class="i18n zh">学段</span></dt>
+                <dd><span class="i18n en">High school · A-Level · IGCSE — IT, Computer Science, ICT</span><span class="i18n zh">高中 · A-Level · IGCSE —— IT、计算机科学、ICT</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Languages</span><span class="i18n zh">语言</span></dt>
+                <dd><span class="i18n en">Uyghur (native) · Mandarin (native) · English (fluent)</span><span class="i18n zh">维吾尔语（母语）· 普通话（母语）· 英语（流利）</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Studying</span><span class="i18n zh">在读</span></dt>
+                <dd><span class="i18n en">MSc Artificial Intelligence &amp; Educational Technology — EdUHK, 2026–27</span><span class="i18n zh">人工智能与教育科技理学硕士 —— 香港教育大学，2026–27</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Studied</span><span class="i18n zh">本科</span></dt>
+                <dd><span class="i18n en">BEng Communication Engineering — Zhejiang Sci-Tech University</span><span class="i18n zh">通信工程学士 —— 浙江理工大学</span></dd>
+              </div>
+              <div>
+                <dt><span class="i18n en">Now</span><span class="i18n zh">在做</span></dt>
+                <dd><span class="i18n en">Building <a href="#mentora">Mentora</a> · looking for EdTech internships</span><span class="i18n zh">在做 <a href="#mentora">Mentora</a> · 寻找 EdTech 实习</span></dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section-alt" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">02 — <span class="i18n en">Experience</span><span class="i18n zh">经历</span></span>
+          <h2>
+            <span class="i18n en">Everything above came out of these rooms.</span>
+            <span class="i18n zh">上面那些判断，都是从这些地方长出来的。</span>
+          </h2>
+        </div>
+
+        <div class="exp-cards">
+
+          <article class="exp-card">
+            <div class="exp-years">2023 – 2026</div>
+            <h3>
+              <span class="i18n en">IT &amp; Computer Science Teacher · Form Tutor</span>
+              <span class="i18n zh">IT 与计算机科学教师 · 班主任</span>
+            </h3>
+            <div class="exp-org">
+              <span class="i18n en">International high school, Cambridge pathway — Hangzhou</span>
+              <span class="i18n zh">国际高中（剑桥体系）—— 杭州</span>
+            </div>
+            <p>
+              <span class="i18n en">Taught A-Level and IGCSE IT and Computer Science. Founded the “Fun with AI” elective and student club, designed an 18-lesson school-based STEM curriculum, coached for the ACSL and CALICO competitions, and was form tutor to a class of twenty.</span>
+              <span class="i18n zh">讲授 A-Level 与 IGCSE 的 IT 和计算机科学。创办「Fun with AI」选修课与学生社团，设计 18 课时校本 STEM 课程，带队参加 ACSL 与 CALICO 竞赛，并担任一个二十人班级的班主任。</span>
+            </p>
+            <div class="exp-highlight">
+              <span class="i18n en">Every student in my 2026 cohort was admitted to a QS Top 100 university.</span>
+              <span class="i18n zh">我带的 2026 届学生，全部获得 QS 前 100 大学录取。</span>
+            </div>
+            <ul class="tags">
+              <li>A-Level · IGCSE</li>
+              <li><span class="i18n en">Curriculum design</span><span class="i18n zh">课程设计</span></li>
+              <li><span class="i18n en">Pastoral care</span><span class="i18n zh">班级管理</span></li>
+            </ul>
+          </article>
+
+          <article class="exp-card">
+            <div class="exp-years">2022 – 2023</div>
+            <h3>
+              <span class="i18n en">Training Programme Coordinator</span>
+              <span class="i18n zh">培训项目协调人</span>
+            </h3>
+            <div class="exp-org">
+              <span class="i18n en">University school of public affairs — Hangzhou</span>
+              <span class="i18n zh">某高校公共管理学院 —— 杭州</span>
+            </div>
+            <p>
+              <span class="i18n en">Coordinated executive training programmes for 500+ professionals, and ran the LMS and the digital workflow behind delivery and evaluation. My first look at learning technology from the administrator's side.</span>
+              <span class="i18n zh">协调面向 500+ 名专业人士的高级研修项目，负责学习管理系统，以及实施与评估的数字化流程。这是我第一次从管理者的角度看学习技术。</span>
+            </p>
+            <ul class="tags">
+              <li>LMS</li>
+              <li><span class="i18n en">Programme design</span><span class="i18n zh">项目设计</span></li>
+            </ul>
+          </article>
+
+          <article class="exp-card">
+            <div class="exp-years">2021 – 2022</div>
+            <h3>
+              <span class="i18n en">K-12 Instructor</span>
+              <span class="i18n zh">K-12 教师</span>
+            </h3>
+            <div class="exp-org">
+              <span class="i18n en">Private education group — Hangzhou</span>
+              <span class="i18n zh">教育培训机构 —— 杭州</span>
+            </div>
+            <p>
+              <span class="i18n en">Where I learned to teach: 200+ students, multimedia classrooms, and very fast feedback on what actually holds a room.</span>
+              <span class="i18n zh">我学会教书的地方：200+ 名学生、多媒体课堂，以及最快的反馈——到底什么才真的抓得住一间教室。</span>
+            </p>
+            <ul class="tags">
+              <li>K-12</li>
+              <li><span class="i18n en">Classroom tech</span><span class="i18n zh">课堂技术</span></li>
+            </ul>
+          </article>
+
+        </div>
+
+        <p class="exp-note">
+          <span class="i18n en">Institution names, exact dates and full responsibilities live in the CV rather than on a public page — a deliberate choice. <a href="assets/Gloria-Gu-CV.pdf" download>Download the CV →</a></span>
+          <span class="i18n zh">具体单位名称、精确起止时间与完整职责写在简历里，而不放在公开页面上。<a href="assets/Gloria-Gu-CV.pdf" download>下载简历 →</a></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- MENTORA -->
+    <section class="section" id="mentora">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">03 — <span class="i18n en">Current project</span><span class="i18n zh">在做的项目</span></span>
+          <h2>Mentora — <span class="i18n en">an AI teaching-loop agent</span><span class="i18n zh">一个 AI 教学闭环 Agent</span></h2>
+          <p class="section-sub">
+            <span class="i18n en">Teachers photograph student work. The agent grades against the official mark scheme, diagnoses <em>why</em> the marks were lost, maps each error to a syllabus objective, generates targeted practice and flags at-risk students. The teacher reviews and releases with one click.</span>
+            <span class="i18n zh">老师拍照上传作业，Agent 按官方 mark scheme 逐点批改、判断<em>为什么</em>失分、把每个错误挂到大纲知识点上、生成针对性练习并预警掉队学生。老师只在最后审核，一键下发。</span>
+          </p>
+        </div>
+
+        <!-- Problem → why existing tools don't fit -->
+        <div class="sub-divider">
+          <span class="i18n en">Why it exists</span><span class="i18n zh">为什么做它</span>
+        </div>
+        <div class="mentora-intro">
+          <div class="mi-block">
+            <h3><span class="i18n en">The problem</span><span class="i18n zh">问题</span></h3>
+            <p>
+              <span class="i18n en">A subject teacher on 16 lessons a week loses hours to one loop: mark the paper → work out the error cause → map it back to the syllabus → find the right past-paper question for each student. The same mistake gets judged from scratch twenty times, and a struggling student is usually spotted two weeks too late.</span>
+              <span class="i18n zh">一个每周 16 节课的学科老师，时间会被同一个循环反复吃掉：批改 → 分析错因 → 对回大纲 → 再给每个学生找一道合适的 past paper。同一个错误，在三十份作业里要重新判断二十次；而掉队的学生，通常要两周后才被发现。</span>
+            </p>
+          </div>
+          <div class="mi-block">
+            <h3><span class="i18n en">Why existing tools don't close it</span><span class="i18n zh">现有工具为什么补不上</span></h3>
+            <ul class="mi-list">
+              <li><span class="i18n en"><strong>General chat assistants</strong> — one-shot, no memory, not aligned to any exam board.</span><span class="i18n zh"><strong>通用聊天助手</strong>——单次对话、无记忆、不对齐任何考试局标准。</span></li>
+              <li><span class="i18n en"><strong>AI tutors</strong> — built for the student side; they never touch the teacher's marking workflow.</span><span class="i18n zh"><strong>AI 学习助教</strong>——面向学生端，不进入教师的批改工作流。</span></li>
+              <li><span class="i18n en"><strong>Smart campus systems</strong> — administration and class management, not the inside of a subject lesson.</span><span class="i18n zh"><strong>智慧校园系统</strong>——面向行政与班级管理，不进入学科教学内部。</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Three design principles -->
+        <div class="sub-divider">
+          <span class="i18n en">Three design principles</span><span class="i18n zh">三条设计原则</span>
+        </div>
+        <div class="principles">
+          <article class="principle">
+            <span class="p-num">01</span>
+            <h4><span class="i18n en">Natively aligned to the mark scheme</span><span class="i18n zh">Mark scheme 原生对齐</span></h4>
+            <p>
+              <span class="i18n en">Not “let the AI decide a score”. Every mark point is judged separately, and the model must point to the sentence in the student's answer that justifies it. Explaining <em>how</em> the decision was reached is what earns teacher trust (Nazaretsky et al., 2022).</span>
+              <span class="i18n zh">不是「让 AI 看着办给个分」，而是逐个评分点判定，并且必须指出依据来自学生答案的哪一句。解释「AI 是怎么判的」正是提升教师信任的关键（Nazaretsky et al., 2022）。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">02</span>
+            <h4><span class="i18n en">A closed loop with long-term memory</span><span class="i18n zh">闭环 + 长期记忆</span></h4>
+            <p>
+              <span class="i18n en">Not a chatbot that waits to be asked. Every student carries a mastery profile that updates each week, and the agent raises the warning itself — before the monthly exam, not after it.</span>
+              <span class="i18n zh">不是等人提问的聊天机器人。每个学生有随周更新的知识点掌握画像，Agent 主动发起预警——在月考之前，而不是之后。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">03</span>
+            <h4><span class="i18n en">The teacher reviews; the teacher does not operate</span><span class="i18n zh">教师只审核，不操作</span></h4>
+            <p>
+              <span class="i18n en">No prompts to write, no models to pick, no settings to configure. The human intervention point is review and release. Responsibility for a grade stays with a person — that one is not negotiable.</span>
+              <span class="i18n zh">不用写提示词、不用选模型、不用配置参数。人的介入点在审核与下发。分数与评价的最终责任必须在人——这条不可让步。</span>
+            </p>
+          </article>
+        </div>
+
+        <!-- ============ INTERACTIVE PROTOTYPE ============ -->
+        <div class="sub-divider">
+          <span class="i18n en">Walk the loop yourself</span><span class="i18n zh">自己走一遍这个闭环</span>
+        </div>
+        <div class="proto-lead">
+          <p>
+            <span class="i18n en">Seven steps, one A-Level IT question. Click through them, or use the ← → arrow keys.</span>
+            <span class="i18n zh">七个步骤，一道 A-Level IT 题目。逐步点击，或用键盘 ← → 切换。</span>
+          </p>
+        </div>
+
+        <div class="proto-frame" id="mentora-proto">
+          <div class="proto-bar">
+            <div class="proto-bar-left">
+              <span class="proto-dot"></span><span class="proto-dot"></span><span class="proto-dot"></span>
+              <span class="proto-title">Mentora <span class="proto-scope">· A-Level IT · v0</span></span>
+            </div>
+            <span class="proto-badge">
+              <span class="i18n en">Concept prototype · simulated data · not a live system</span>
+              <span class="i18n zh">概念原型 · 模拟数据 · 非运行系统</span>
+            </span>
+          </div>
+
+          <div class="proto-steps" role="tablist" aria-label="Mentora workflow steps"></div>
+
+          <div class="proto-panel" role="tabpanel" tabindex="0"></div>
+
+          <div class="proto-foot">
+            <button type="button" class="btn btn-ghost btn-sm" data-proto-prev>
+              <span class="i18n en">← Previous</span><span class="i18n zh">← 上一步</span>
+            </button>
+            <span class="proto-progress" aria-live="polite"></span>
+            <button type="button" class="btn btn-primary btn-sm" data-proto-next>
+              <span class="i18n en">Next →</span><span class="i18n zh">下一步 →</span>
+            </button>
+          </div>
+
+          <noscript>
+            <div class="proto-fallback">
+              <p><strong>This walkthrough needs JavaScript.</strong> The seven steps of the loop are:
+              ① capture &amp; structure → ② mark-scheme grading → ③ error attribution → ④ syllabus mapping →
+              ⑤ practice generation &amp; risk alert → ⑥ teacher review → ⑦ one-click release,
+              with every result written back into the student's long-term mastery profile.</p>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="proto-meta">
+        <p class="proto-note">
+          <span class="i18n en"><strong>Status, honestly stated.</strong> This is a design prototype with simulated data — no pilot has run yet. A design-stage evaluation with teachers is planned for October 2026, and a longitudinal usage pilot for 2027. No effectiveness figures are claimed on this page, and none will be until that data exists.</span>
+          <span class="i18n zh"><strong>诚实的项目状态。</strong>这是一个使用模拟数据的设计原型，尚未进行任何 pilot。教师参与的设计阶段评估计划于 2026 年 10 月进行，纵向使用 pilot 计划于 2027 年。在真实数据产生之前，本页不会给出任何效果数字。</span>
+        </p>
+
+        <p class="proto-credit">
+          <span class="i18n en"><strong>Credit and scope.</strong> Mentora — concept, interaction design and prototype by Gloria Gu, 2026. Shared here to be discussed, not reused: please ask before adapting the design. The mark-scheme decomposition rules, the syllabus tree and the evaluation instrument are not published.</span>
+          <span class="i18n zh"><strong>署名与公开范围。</strong>Mentora 的概念、交互设计与原型均由 Gloria Gu 于 2026 年完成。此处公开是为了交流而非复用；如需借鉴，请先联系我。评分点拆解规则、知识点树与评估工具未对外公开。</span>
+        </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">04 — <span class="i18n en">Projects</span><span class="i18n zh">项目</span></span>
+          <h2><span class="i18n en">Built, taught, shipped</span><span class="i18n zh">做过的东西</span></h2>
+        </div>
+
+        <div class="projects">
+
+          <article class="project project-wide">
+            <div class="project-meta">
+              <span class="project-year">2025 – 2026</span>
+              <span class="project-kind"><span class="i18n en">Product requirements &amp; review</span><span class="i18n zh">需求定义与评审</span></span>
+            </div>
+            <h3>IvyCampus — <span class="i18n en">Smart Campus Platform</span><span class="i18n zh">智慧校园平台</span></h3>
+            <p>
+              <span class="i18n en">I helped define the requirements and system framework for my school's smart campus platform, reviewed each release with the engineering team, and it is now deployed and in daily use. The design that mattered most was not a feature — it was making the platform <strong>role-based</strong>, so that a signal raised in one role travels to the right person and comes back as a closed loop.</span>
+              <span class="i18n zh">我参与定义了所在学校智慧校园平台的需求与系统框架，与工程团队逐版本评审，目前已部署并投入日常使用。其中最关键的设计不是某个功能，而是把平台做成<strong>分角色</strong>的——某一个角色发出的信号，能走到该处理的人那里，并形成闭环回到起点。</span>
+            </p>
+
+            <figure class="role-loop">
+              <svg viewBox="0 0 760 132" role="img" aria-labelledby="loop-title">
+                <title id="loop-title">Four-role closed loop: classroom signal, teacher action, leadership visibility, parent conversation</title>
+                <defs>
+                  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c2410c" />
+                  </marker>
+                </defs>
+                <g class="rl-box">
+                  <rect x="4"   y="34" width="164" height="48" rx="10" />
+                  <rect x="200" y="34" width="164" height="48" rx="10" />
+                  <rect x="396" y="34" width="164" height="48" rx="10" />
+                  <rect x="592" y="34" width="164" height="48" rx="10" />
+                </g>
+                <g class="rl-label">
+                  <text x="86"  y="54" text-anchor="middle" class="rl-role">STUDENT</text>
+                  <text x="86"  y="70" text-anchor="middle" class="rl-what" data-en="Signal in class" data-zh="课堂端信号">Signal in class</text>
+                  <text x="282" y="54" text-anchor="middle" class="rl-role">TEACHER</text>
+                  <text x="282" y="70" text-anchor="middle" class="rl-what" data-en="Acts on it" data-zh="教师处理">Acts on it</text>
+                  <text x="478" y="54" text-anchor="middle" class="rl-role">LEADERSHIP</text>
+                  <text x="478" y="70" text-anchor="middle" class="rl-what" data-en="Sees the pattern" data-zh="管理层看见规律">Sees the pattern</text>
+                  <text x="674" y="54" text-anchor="middle" class="rl-role">PARENT</text>
+                  <text x="674" y="70" text-anchor="middle" class="rl-what" data-en="Informed — if the switch is on" data-zh="家长知情 — 若开关开启">Informed — if the switch is on</text>
+                </g>
+                <g class="rl-arrow" marker-end="url(#arw)">
+                  <path d="M 172 58 L 194 58" />
+                  <path d="M 368 58 L 390 58" />
+                  <path d="M 564 58 L 586 58" />
+                  <path d="M 674 88 L 674 108 L 86 108 L 86 88" />
+                </g>
+              </svg>
+              <figcaption>
+                <span class="i18n en">Leadership, teachers, students and parents each see a different slice of the same record — and the parent-visibility switch is off by default.</span>
+                <span class="i18n zh">管理层、教师、学生、家长看到的是同一条记录的不同切片——而「家长可见」开关默认关闭。</span>
+              </figcaption>
+            </figure>
+
+            <a href="blog/parent-visibility.html" class="project-link">
+              <span class="i18n en">Why that switch is the red line →</span>
+              <span class="i18n zh">为什么那个开关是红线 →</span>
+            </a>
+          </article>
+
+          <article class="project">
+            <div class="project-meta">
+              <span class="project-year">2024 – 2026</span>
+              <span class="project-kind"><span class="i18n en">Curriculum</span><span class="i18n zh">课程</span></span>
+            </div>
+            <h3><span class="i18n en">Guardian Action</span><span class="i18n zh">守护行动</span></h3>
+            <p>
+              <span class="i18n en">A school-based STEM curriculum I designed: 5 units, 18 lessons, combining hardware modification, voice-recognition programming and disaster-scenario simulation. Students end the unit with a device that does something in the real world.</span>
+              <span class="i18n zh">我设计的校本 STEM 课程：5 个单元、18 课时，融合硬件改装、语音识别编程与灾害情景模拟。课程结束时，学生手里是一个能在真实世界里起作用的装置。</span>
+            </p>
+            <ul class="tags">
+              <li>STEM</li>
+              <li><span class="i18n en">Project-based</span><span class="i18n zh">项目式</span></li>
+              <li><span class="i18n en">18 lessons</span><span class="i18n zh">18 课时</span></li>
+            </ul>
+          </article>
+
+          <article class="project">
+            <div class="project-meta">
+              <span class="project-year">2023 – 2026</span>
+              <span class="project-kind"><span class="i18n en">Elective &amp; club</span><span class="i18n zh">选修课与社团</span></span>
+            </div>
+            <h3>Fun with AI</h3>
+            <p>
+              <span class="i18n en">An elective and a student club I founded, both project-based: students build interactive applications and train their own ML models to solve problems they picked themselves. I also coach for the ACSL and CALICO computing competitions.</span>
+              <span class="i18n zh">我创办的选修课与学生社团，都以项目为核心：学生搭建交互应用、训练自己的机器学习模型，解决他们自己选定的问题。同时带队参加 ACSL 与 CALICO 计算机竞赛。</span>
+            </p>
+            <ul class="tags">
+              <li><span class="i18n en">Machine learning</span><span class="i18n zh">机器学习</span></li>
+              <li><span class="i18n en">Student-led</span><span class="i18n zh">学生主导</span></li>
+              <li>ACSL · CALICO</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="section" id="writing">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">05 — <span class="i18n en">Writing</span><span class="i18n zh">写作</span></span>
+          <h2><span class="i18n en">Notes from the classroom side of EdTech</span><span class="i18n zh">来自课堂那一侧的教育科技笔记</span></h2>
+        </div>
+
+        <div class="posts">
+          <a class="post" href="blog/parent-visibility.html">
+            <div class="post-date">Aug 30, 2026</div>
+            <h3>
+              <span class="i18n en">The parent-visibility switch is the red line</span>
+              <span class="i18n zh">家长可见性开关，是那条红线</span>
+            </h3>
+            <p>
+              <span class="i18n en">Reviewing our school's smart campus platform, one requirement mattered more than any feature on the list — and it was the one nobody had asked for.</span>
+              <span class="i18n zh">评审学校智慧校园系统时，有一条需求比清单上任何功能都重要——而它恰恰是没有人提出来的那一条。</span>
+            </p>
+            <span class="post-read"><span class="i18n en">Read →</span><span class="i18n zh">阅读 →</span></span>
+          </a>
+
+          <a class="post" href="blog/teacher-who-codes.html">
+            <div class="post-date">Aug 30, 2026</div>
+            <h3>
+              <span class="i18n en">Both sides were reasonable. The requirement was broken.</span>
+              <span class="i18n zh">两边都没做错，坏掉的是那条需求</span>
+            </h3>
+            <p>
+              <span class="i18n en">Two mirror-image failures in school software: the wishlist nobody can build, and the elegant feature nobody opens. Why more meetings don't fix either one.</span>
+              <span class="i18n zh">校园软件的两种镜像式失败：没人能实现的愿望清单，和没人点开的优雅功能。以及，为什么多开会解决不了。</span>
+            </p>
+            <span class="post-read"><span class="i18n en">Read →</span><span class="i18n zh">阅读 →</span></span>
+          </a>
+
+          <article class="post is-soon">
+            <div class="post-date"><span class="i18n en">Coming soon</span><span class="i18n zh">即将发布</span></div>
+            <h3>
+              <span class="i18n en">What should we measure when a teacher marks with AI?</span>
+              <span class="i18n zh">当老师用 AI 批改，我们究竟该测量什么？</span>
+            </h3>
+            <p>
+              <span class="i18n en">My MSc research direction. Most studies ask teachers whether they trust AI marking. I want to log what they actually do with it — accept, edit, override — and treat that log as the measurement.</span>
+              <span class="i18n zh">我的硕士研究方向。多数研究问的是老师「信不信」AI 批改；我想记录他们实际怎么做——采纳、修改、推翻——并把这份日志本身当作测量。</span>
+            </p>
+            <span class="post-read is-muted"><span class="i18n en">In progress · 2026–27</span><span class="i18n zh">进行中 · 2026–27</span></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-alt" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <span class="section-tag">06 — <span class="i18n en">Contact</span><span class="i18n zh">联系</span></span>
+          <h2><span class="i18n en">Let's talk.</span><span class="i18n zh">聊聊。</span></h2>
+          <p class="section-sub">
+            <span class="i18n en">I'm looking for internship or part-time work with EdTech teams in Hong Kong who want someone who has actually stood in front of a class. Fellow teachers and researchers — always welcome too.</span>
+            <span class="i18n zh">我在寻找香港 EdTech 团队的实习或兼职机会——尤其是那些希望团队里有人真正站过讲台的团队。同行教师与研究者，也随时欢迎来聊。</span>
+          </p>
+        </div>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">Email</span>
+            <a href="mailto:guli2020127@gmail.com">guli2020127@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/gloriagu-edtech" rel="noopener" target="_blank">linkedin.com/in/gloriagu-edtech</a>
+          </li>
+          <li>
+            <span class="contact-label">CV</span>
+            <a href="assets/Gloria-Gu-CV.pdf" download><span class="i18n en">Download PDF</span><span class="i18n zh">下载 PDF</span></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        © <span id="year"></span> Gloria Gu.
+        <span class="i18n en">Built with plain HTML, CSS and a little JavaScript.</span>
+        <span class="i18n zh">用纯 HTML、CSS 和一点 JavaScript 搭建。</span>
+      </p>
+      <a href="#top" class="to-top"><span class="i18n en">Back to top ↑</span><span class="i18n zh">回到顶部 ↑</span></a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
