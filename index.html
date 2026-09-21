@@ -343,6 +343,51 @@
           </article>
         </div>
 
+        <!-- Rules that only appeared once it was built -->
+        <div class="sub-divider">
+          <span class="i18n en">Four rules the build forced on the design</span><span class="i18n zh">建起来之后才逼出来的四条规矩</span>
+        </div>
+        <div class="proto-lead">
+          <p>
+            <span class="i18n en">The three principles above were written before any code existed. These four were not: each one came from a defect found while running the real loop, where two steps were each correct on their own and wrong in combination.</span>
+            <span class="i18n zh">上面三条原则是写在代码之前的。下面这四条不是——每一条都来自真跑时撞到的一个缺陷，而它们的形状是同一个：<strong>两步各自自洽，合起来是错的</strong>。</span>
+          </p>
+        </div>
+        <div class="principles">
+          <article class="principle">
+            <span class="p-num">04</span>
+            <h4><span class="i18n en">One door into a student's profile</span><span class="i18n zh">画像只有一道门</span></h4>
+            <p>
+              <span class="i18n en">Only marks a teacher has signed off enter the long-term profile. The model's own marking, however good, is not a record of anything — and when both were allowed in, one paper was silently counted as two sittings.</span>
+              <span class="i18n zh">只有教师签过字的分能进长期画像。模型自己给的分再准也不构成记录——两者都放进去的时候，同一张卷子被静悄悄算成了两次作业。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">05</span>
+            <h4><span class="i18n en">Unreviewed is not accepted</span><span class="i18n zh">未审 ≠ 采纳</span></h4>
+            <p>
+              <span class="i18n en">A suggestion nobody looked at must never be counted as one a teacher agreed with — and its other half: an edit that changed nothing must not be recorded as a change. Otherwise an "agreement rate" measures the interface, not the teacher.</span>
+              <span class="i18n zh">没人看过的建议，绝不能算成教师同意过的建议；另一半是：一次什么都没改的"修改"，不能被记成改过。否则算出来的"采纳率"量的是界面，不是教师。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">06</span>
+            <h4><span class="i18n en">Annotate bad data; don't delete it</span><span class="i18n zh">错数据只标注，不删除</span></h4>
+            <p>
+              <span class="i18n en">When a batch of records turned out to be filed under the wrong student, the ruling was to keep every row and attach a note that prints above the charts. Deleting would have made the picture clean instantly — and a clean picture does not show that it was cleaned.</span>
+              <span class="i18n zh">当一批记录被发现挂错了学生，裁定是全部留下、加一条打印在图表<strong>上方</strong>的标注。删掉会让图立刻变干净——而干净的图看不出它被清洗过。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">07</span>
+            <h4><span class="i18n en">Absence has to be visible</span><span class="i18n zh">缺席必须看得见</span></h4>
+            <p>
+              <span class="i18n en">A question the system declined to judge must not look like a question the student never sat. Every profile reports its own coverage, in marks and in syllabus objectives, so a hole in the data cannot be mistaken for a weakness in the student.</span>
+              <span class="i18n zh">一道系统没敢判的题，不能和"学生根本没考过"长得一样。每张画像都要报出自己的覆盖率——按分，也按知识点——这样数据上的窟窿才不会被读成学生的薄弱点。</span>
+            </p>
+          </article>
+        </div>
+
         <!-- ============ INTERACTIVE PROTOTYPE ============ -->
         <div class="sub-divider">
           <span class="i18n en">Walk the loop yourself</span><span class="i18n zh">自己走一遍这个闭环</span>
@@ -392,8 +437,8 @@
 
         <div class="proto-meta">
         <p class="proto-note">
-          <span class="i18n en"><strong>Status, honestly stated.</strong> This is a design prototype with simulated data — no pilot has run yet. A design-stage evaluation with teachers is planned for October 2026, and a longitudinal usage pilot for 2027. No effectiveness figures are claimed on this page, and none will be until that data exists.</span>
-          <span class="i18n zh"><strong>诚实的项目状态。</strong>这是一个使用模拟数据的设计原型，尚未进行任何 pilot。教师参与的设计阶段评估计划于 2026 年 10 月进行，纵向使用 pilot 计划于 2027 年。在真实数据产生之前，本页不会给出任何效果数字。</span>
+          <span class="i18n en"><strong>Status, honestly stated.</strong> The walkthrough above is a click-through simulation with illustrative data. Behind it there is now a working v0 for one subject: a pipeline that runs the whole loop, from a photograph of handwritten work to a teacher-reviewed release, with a browser-based review step and a per-student mastery profile. It has only ever been run on answers I wrote and marked myself — <strong>no student work has been used</strong>, and none will be before de-identification, written school authorisation and ethics approval are in place. No pilot has run. No effectiveness figures are claimed on this page, and none will be until that data exists: a design-stage evaluation with teachers is planned for October 2026, and a longitudinal usage pilot for 2027.</span>
+          <span class="i18n zh"><strong>诚实的项目状态。</strong>上面这个走查是使用示意数据的点击原型。它背后现在有一个能跑的单科 v0：从一张手写作业照片，到教师在浏览器里逐条审核、一键下发，再写回每个学生的掌握画像，整条链路都已跑通。它只跑过我自己写、自己批的答案——<strong>没有使用任何学生作业</strong>；在脱敏方案、学校书面授权与伦理审批到位之前也不会使用。尚未进行任何 pilot。在真实数据产生之前，本页不会给出任何效果数字：教师参与的设计阶段评估计划于 2026 年 10 月，纵向使用 pilot 计划于 2027 年。</span>
         </p>
 
         <p class="proto-credit">
