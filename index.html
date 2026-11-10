@@ -290,6 +290,59 @@
           </p>
         </div>
 
+        <!-- What runs today -->
+        <div class="sub-divider">
+          <span class="i18n en">What the v0 does today</span><span class="i18n zh">v0 现在能做什么</span>
+        </div>
+        <div class="principles">
+          <article class="principle">
+            <span class="p-num">▸</span>
+            <h4><span class="i18n en">Reads handwriting from a photo</span><span class="i18n zh">从照片读取手写作答</span></h4>
+            <p>
+              <span class="i18n en">A photo of handwritten work is split by question and turned into text. The transcription is editable before anything is marked, so a misread gets fixed by the teacher instead of being silently graded.</span>
+              <span class="i18n zh">手写作业照片按题号切分并转成文本。批改前转写结果可以编辑，识别错误由老师改正，而不是被悄悄打分。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">▸</span>
+            <h4><span class="i18n en">Marks point by point, with evidence checked in code</span><span class="i18n zh">逐点批改，证据由代码校验</span></h4>
+            <p>
+              <span class="i18n en">Each mark-scheme point is awarded or refused separately. Every award must quote a sentence that actually appears in the student's answer; code rejects any award without one. Totals are summed in Python, not by the model.</span>
+              <span class="i18n zh">每个评分点单独判定得分与否。每一个得分都必须引用学生答案中真实存在的原句，代码会拒绝没有依据的得分。总分由 Python 计算，不交给模型。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">▸</span>
+            <h4><span class="i18n en">Explains each lost mark</span><span class="i18n zh">解释每一处失分</span></h4>
+            <p>
+              <span class="i18n en">Each lost mark is attributed to one of five error types (concept, question reading, wording, calculation, omission) and placed on a syllabus tree that I reviewed and signed off on 16 September 2026.</span>
+              <span class="i18n zh">每处失分归入五类错因之一（概念不清、审题、表述、计算、遗漏），并挂到我于 2026 年 9 月 16 日审定签字的知识点树上。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">▸</span>
+            <h4><span class="i18n en">Practice and feedback, drafted for the teacher</span><span class="i18n zh">练习与反馈，由老师定稿</span></h4>
+            <p>
+              <span class="i18n en">For each weak node the agent drafts two practice questions and a student feedback card. The teacher reviews every item with Accept, Edit or Override, and each decision is logged with the before and after text and the reason.</span>
+              <span class="i18n zh">针对每个薄弱知识点，Agent 起草两道练习题和一张学生反馈卡。老师对每一条用「采纳 / 修改 / 否决」审核，每个决定都记录改前改后的内容和理由。</span>
+            </p>
+          </article>
+          <article class="principle">
+            <span class="p-num">▸</span>
+            <h4><span class="i18n en">Release writes back to memory</span><span class="i18n zh">下发后写回长期记忆</span></h4>
+            <p>
+              <span class="i18n en">Release sends the teacher-signed feedback and writes the teacher's final marks into a per-student mastery profile stored in SQLite. Model suggestions that nobody signed off never enter that profile.</span>
+              <span class="i18n zh">下发时发出老师定稿的反馈，并把老师签定的分数写入每位学生的 SQLite 掌握画像。没有经过老师确认的模型建议，不会进入画像。</span>
+            </p>
+          </article>
+        </div>
+        <div class="proto-lead">
+          <p>
+            <span class="i18n en">It has been run on real handwritten photos, but only on answers I wrote and marked myself. The next step is a teacher evaluation in October 2026, not more features.</span>
+            <span class="i18n zh">它已经用真实的手写作业照片跑过，但只用了我自己写、自己批的答案。下一步是 2026 年 10 月的教师评估，而不是再加功能。</span>
+          </p>
+        </div>
+
         <!-- Problem → why existing tools don't fit -->
         <div class="sub-divider">
           <span class="i18n en">Why it exists</span><span class="i18n zh">为什么做它</span>
@@ -446,6 +499,23 @@
           <span class="i18n zh"><strong>署名与公开范围。</strong>Mentora 的概念、交互设计与原型均由 Gloria Gu 于 2026 年完成。此处公开是为了交流而非复用；如需借鉴，请先联系我。评分点拆解规则、知识点树与评估工具未对外公开。</span>
         </p>
         </div>
+
+        <!-- Teacher dashboard -->
+        <div class="sub-divider">
+          <span class="i18n en">The teacher dashboard</span><span class="i18n zh">教师仪表盘</span>
+        </div>
+        <div class="proto-lead">
+          <p>
+            <span class="i18n en">The v0 comes with a teacher dashboard that has three working views: <strong>Today</strong> (classes in progress, students who need attention, this week's activity), <strong>Marking</strong> (upload a paper, accept, edit or override each mark-point decision, then release), and <strong>Students</strong> (each student's topic mastery, weak topics and transcribed answers). This demo uses simulated data for five students in a Year 12 AS class.</span>
+            <span class="i18n zh">v0 配有一套教师仪表盘，包含三个可用视图：<strong>今日</strong>（进行中的批改、需要关注的学生、本周动态）、<strong>批改</strong>（上传试卷，对每个评分点逐条采纳、修改或否决，再下发）、<strong>学生</strong>（每位学生的知识点掌握度、薄弱点与转写文本）。本演示使用模拟数据，包含一个 Year 12 AS 班的五名学生。</span>
+          </p>
+        </div>
+        <p style="text-align:center;margin-top:1rem;">
+          <a href="mentora/index.html" class="btn btn-primary">
+            <span class="i18n en">Open the dashboard demo →</span>
+            <span class="i18n zh">打开仪表盘演示 →</span>
+          </a>
+        </p>
       </div>
     </section>
 
@@ -511,6 +581,24 @@
               <span class="i18n en">Why that switch is the red line →</span>
               <span class="i18n zh">为什么那个开关是红线 →</span>
             </a>
+          </article>
+
+          <article class="project">
+            <div class="project-meta">
+              <span class="project-year"><span class="i18n en">Group project</span><span class="i18n zh">小组项目</span></span>
+              <span class="project-kind">Python · CLI</span>
+            </div>
+            <h3>ExamPilot — <span class="i18n en">exam preparation for teachers</span><span class="i18n zh">教师考前复习工具</span></h3>
+            <p>
+              <span class="i18n en">A command-line tool for A-Level and IGCSE teachers. It keeps a question bank of past-paper questions, records each student's result against the question, flags topics where students score below 60%, and generates revision plans and practice sets. Built by a six-person team from a written specification, with 42 unit tests, all passing. The analysis and planning core is rule-based today; the tool can be extended with an LLM for more personalised explanations and practice.</span>
+              <span class="i18n zh">面向 A-Level 与 IGCSE 老师的命令行工具：维护真题题库，按题记录每位学生的成绩，标出得分率低于 60% 的知识点，并生成复习计划与练习套题。六人小组依据书面规格说明开发，附 42 个单元测试，全部通过。分析与规划的核心目前以规则实现；工具可以接入大模型，用于生成更个性化的讲解与练习。</span>
+            </p>
+            <ul class="tags">
+              <li>Python</li>
+              <li>unittest</li>
+              <li><span class="i18n en">Specification-driven</span><span class="i18n zh">规格驱动</span></li>
+              <li><span class="i18n en">Rule core · LLM-ready</span><span class="i18n zh">规则核心 · 可接大模型</span></li>
+            </ul>
           </article>
 
           <article class="project">

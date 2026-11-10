@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mentora — demo</title>
+<meta name="description" content="Mentora demo. A teacher system for the part of marking that comes after the score: upload a paper, mark it against the exam-board mark scheme, see why each mark was lost, map it to the syllabus, set targeted practice, review everything, release. Demo build with simulated data." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Gloria Gu" />
+<meta property="og:title" content="Mentora — teacher system demo" />
+<meta property="og:description" content="Upload a paper, mark it against the exam-board mark scheme, see the sentence that earned each mark, overrule the AI, release only what you have signed off. Demo build with simulated data." />
+<meta property="og:url" content="https://guli127.github.io/mentora/" />
+<meta property="og:image" content="https://guli127.github.io/assets/og-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="nav">
+    <div class="brand">Mentora<i>.</i></div>
+    <a href="#today"    data-nav="today">Today</a>
+    <a href="#marking"  data-nav="marking">Marking</a>
+    <a href="#students" data-nav="students">Students</a>
+    <span class="grow"></span>
+    <div class="foot">
+      <b id="navClass">Year 12 (AS)</b>
+      <span id="navCount">5 students</span>
+      <button class="keys" id="keysBtn" type="button">?</button>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <!-- ===================== TODAY ===================== -->
+    <div class="bar" data-bar="today">
+      <h1>Today</h1>
+      <span class="grow"></span>
+      <span class="chip" id="barClass">Year 12 (AS)</span>
+      <span class="avatar">GG</span>
+    </div>
+
+    <section class="view" data-view="today">
+      <h2 class="sec">In progress</h2>
+      <div class="task">
+        <div>
+          <div class="t" id="tTitle"></div>
+          <div class="s" id="tSub"></div>
+        </div>
+        <span class="grow"></span>
+        <button class="btn" id="tStart" type="button">Open</button>
+      </div>
+
+      <div class="gap"></div>
+
+      <h2 class="sec">Needs attention</h2>
+      <div class="rows" id="tWeak"></div>
+
+      <div class="gap"></div>
+
+      <h2 class="sec">This week</h2>
+      <div class="tot" id="tTot"></div>
+    </section>
+
+    <!-- ===================== MARKING ===================== -->
+    <div class="bar" data-bar="marking">
+      <h1 id="mWho"></h1>
+      <span class="meta" id="mMeta"></span>
+      <span class="grow"></span>
+      <span class="state" id="mState"></span>
+    </div>
+
+    <div class="mhead" data-bar="marking">
+      <div class="rail" id="mRail"></div>
+    </div>
+
+    <section class="view wide" data-view="marking">
+      <div class="item" id="mBody"></div>
+    </section>
+
+    <!-- ===================== STUDENTS ===================== -->
+    <div class="bar" data-bar="students">
+      <h1>Students</h1>
+      <span class="grow"></span>
+      <span class="chip" id="barClass2">Year 12 (AS)</span>
+    </div>
+
+    <section class="view" data-view="students">
+      <div class="who-list" id="sWho"></div>
+
+      <div class="task">
+        <div>
+          <div class="t" id="sName"></div>
+          <div class="s" id="sSub"></div>
+        </div>
+        <span class="grow"></span>
+        <button class="btn ghost" id="sNew" type="button">Upload a paper</button>
+      </div>
+
+      <div class="gap"></div>
+
+      <h2 class="sec">Weak</h2>
+      <div class="rows" id="sWeak"></div>
+
+      <div class="gap"></div>
+
+      <h2 class="sec" id="sAbsHead">Assessed but not on the chart</h2>
+      <div class="rows" id="sAbs"></div>
+
+      <div class="gap"></div>
+
+      <h2 class="sec">History</h2>
+      <div class="hist" id="sHist"></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="ovl" id="ovl">
+  <div class="k">
+    <h3>Shortcuts</h3>
+    <dl>
+      <dt>J / K</dt><dd>Previous / next item</dd>
+      <dt>1 &ndash; 9</dt><dd>Select a mark point</dd>
+      <dt>Space</dt><dd>Toggle the selected mark point</dd>
+      <dt>A</dt><dd>Accept</dd>
+      <dt>E</dt><dd>Edit</dd>
+      <dt>O</dt><dd>Override</dd>
+      <dt>Enter</dt><dd>Next item</dd>
+    </dl>
+    <button class="btn ghost x" id="ovlX" type="button">Close</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var D = window.MENTORA;
+  var esc = function (s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c];
+    });
+  };
+  var $ = function (id) { return document.getElementById(id); };
+
+  var GRADES = D.items.filter(function (i) { return i.kind === 'grade'; });
+  var DIAGS  = D.items.filter(function (i) { return i.kind === 'diagnosis'; });
+  var PRACS  = D.items.filter(function (i) { return i.kind === 'practice'; });
+  var N = D.items.length;
+
+  /* 🔴 七步是老师真的要一步步走过去的流程，不是一个导航菜单。
+        老师点开一个学生，是从「上传」开始的 —— 不是从「审核」开始的。
+        STEPS 里每一步记着它要不要人动手：要的那几步没做完，就不许往下走。 */
+  var STEPS = [
+    {n: '1', t: 'Upload',   gate: 'confirmed'},
+    {n: '2', t: 'Grade',    gate: null},
+    {n: '3', t: 'Diagnose', gate: null},
+    {n: '4', t: 'Map',      gate: null},
+    {n: '5', t: 'Practice', gate: null},
+    {n: '6', t: 'Review',   gate: 'reviewed'},
+    {n: '7', t: 'Release',  gate: null}
+  ];
+
+  var S = {
+    step: 0,
+    uploaded: false,
+    confirmed: false,
+    i: 0,            /* ⑥ 里第几条 */
+    dec: {},
+    marks: {},
+    sel: null,
+    released: false,
+    who: D.student
+  };
+
+  function decided() { return Object.keys(S.dec).length; }
+  function reviewed() { return decided() >= N; }
+  function gateOpen(k) { return k === 'confirmed' ? S.confirmed
+                              : k === 'reviewed'  ? reviewed() : true; }
+  /* 走到第 k 步的前提：它前面每一道闸门都开了 */
+  function reach(k) {
+    for (var j = 0; j < k; j++) { if (!gateOpen(STEPS[j].gate)) { return false; } }
+    return true;
+  }
+
+  /* ---------- 路由 ---------- */
+  function show(v) {
+    document.querySelectorAll('[data-view]').forEach(function (e) {
+      e.classList.toggle('on', e.dataset.view === v);
+    });
+    document.querySelectorAll('[data-bar]').forEach(function (e) {
+      e.style.display = e.dataset.bar === v ? '' : 'none';
+    });
+    document.querySelectorAll('[data-nav]').forEach(function (a) {
+      if (a.dataset.nav === v) { a.setAttribute('aria-current', 'page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+    if (v === 'marking') { renderStep(); }
+    if (v === 'today') { renderToday(); }
+    if (v === 'students') { renderStudents(); }
+  }
+  function route() {
+    var h = (location.hash || '#today').slice(1);
+    show(['today', 'marking', 'students'].indexOf(h) >= 0 ? h : 'today');
+  }
+  window.addEventListener('hashchange', route);
+
+  /* ---------- 分数：永远加出来，按满分封顶 ---------- */
+  function scoreOf(it, idx) {
+    var mk = S.marks[idx], n = 0;
+    it.mps.forEach(function (m, j) {
+      var on = mk && mk[j] !== undefined ? mk[j] : m.awarded;
+      if (on) { n += m.marks; }
+    });
+    return Math.min(n, it.max);
+  }
+  function paperScore() {
+    var got = 0, max = 0;
+    GRADES.forEach(function (it) {
+      got += scoreOf(it, D.items.indexOf(it)); max += it.max;
+    });
+    return got + ' / ' + max;
+  }
+
+  /* ---------- 顶部步骤轨 ---------- */
+  function renderRail() {
+    $('mRail').innerHTML = STEPS.map(function (s, i) {
+      var ok = reach(i), done = i < S.step && gateOpen(s.gate);
+      return '<button type="button" data-s="' + i + '"' +
+             (i === S.step ? ' aria-current="true"' : '') +
+             (ok ? '' : ' disabled') + '>' +
+             '<span class="n">' + (done ? '✓' : s.n) + '</span>' + s.t + '</button>';
+    }).join('');
+    $('mRail').querySelectorAll('button[data-s]').forEach(function (b) {
+      b.addEventListener('click', function () { goStep(+b.dataset.s); });
+    });
+  }
+
+  function goStep(k) {
+    if (!reach(k)) { return; }
+    S.step = Math.max(0, Math.min(STEPS.length - 1, k));
+    S.sel = null;
+    renderStep();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  /* 🔴 act 必须真的用上。
+        第一版这里收了 onNext 却没有写进 data-go，按钮一律变成 next ——
+        而 next 走 goStep()，goStep() 又被「必须先 Confirm」那道闸门挡回来，
+        于是「Confirm and mark」点下去什么都不发生：**闸门把开闸的那个按钮也挡住了。** */
+  function foot(backOk, nextLabel, nextOk, act) {
+    return '<div class="acts">' +
+      (backOk ? '<button class="pick" data-go="back">Back</button>' : '') +
+      '<span class="grow"></span>' +
+      (nextLabel ? '<button class="btn" data-go="' + (act || 'next') + '"' +
+        (nextOk ? '' : ' disabled') + '>' + nextLabel + '</button>' : '') + '</div>';
+  }
+
+  /* ---------- 七步 ---------- */
+  function renderStep() {
+    $('mWho').textContent = S.who;
+    $('mMeta').textContent = D.unit + ' · ' + D.subject;
+    $('mState').textContent = S.released ? 'Released'
+      : (S.confirmed ? decided() + ' of ' + N + ' decided' : '');
+    renderRail();
+
+    var h = '';
+    switch (S.step) {
+
+      /* ---------- ① 上传 ---------- */
+      case 0:
+        h += '<h3 class="hd">Upload</h3>';
+        if (!S.uploaded) {
+          h += '<div class="drop" id="drop"><b>Drop a photo or PDF</b>' +
+               '<span>or click to choose a file</span></div>';
+        } else {
+          h += '<div class="file"><span class="ic">IMG</span>' +
+               '<span class="fn">unit1-p1.jpg</span>' +
+               '<span class="grow"></span><span class="ok">Uploaded</span></div>';
+          h += '<h2 class="sec" style="margin-top:1.6rem">Transcribed text</h2>';
+          h += GRADES.filter(function (g) { return g.answer; }).map(function (g) {
+            return '<div class="tr"><span class="qid">' + esc(g.qid) + '</span>' +
+                   '<div class="resp">' + esc(g.answer) + '</div></div>';
+          }).join('');
+          h += foot(false, S.confirmed ? 'Continue' : 'Confirm and mark',
+                    true, 'confirm');
+        }
+        break;
+
+      /* ---------- ② 批改 ---------- */
+      case 1:
+        h += '<h3 class="hd">Grade</h3>' +
+             '<div class="line"><span class="nd">' + GRADES.length + ' questions</span>' +
+             '<span class="grow"></span><span class="mk">' + paperScore() + '</span></div>';
+        h += '<div class="rows" style="margin-top:1rem">' + GRADES.map(function (g) {
+          var idx = D.items.indexOf(g), sc = scoreOf(g, idx);
+          return '<div class="row"><span class="nd">' + esc(g.qid) + '</span>' +
+                 '<span class="grow">' + esc(g.question) + '</span>' +
+                 '<span class="' + (sc === 0 ? 'note' : 'oknote') + '">' +
+                 sc + ' / ' + g.max + '</span></div>';
+        }).join('') + '</div>';
+        h += foot(true, 'Continue', true);
+        break;
+
+      /* ---------- ③ 归因 ---------- */
+      case 2:
+        h += '<h3 class="hd">Diagnose</h3>';
+        h += DIAGS.map(function (d) {
+          return '<div class="box"><div class="line">' +
+            '<span class="tag' + (/word/i.test(d.type) ? ' w' : '') + '">' +
+            esc(d.type) + '</span><span class="qid">' + esc(d.qid) + '</span>' +
+            '<span class="grow"></span><span class="nd">' + esc(d.node) + '</span></div>' +
+            '<div class="resp" style="margin-top:.7rem">' + esc(d.evidence) + '</div>' +
+            (d.note ? '<div class="hintline">' + esc(d.note) + '</div>' : '') +
+            '</div>';
+        }).join('');
+        h += foot(true, 'Continue', true);
+        break;
+
+      /* ---------- ④ 知识点 ---------- */
+      case 3:
+        h += '<h3 class="hd">Map</h3>';
+        h += '<div class="rows">' + DIAGS.map(function (d) {
+          return '<div class="row"><span class="nd">' + esc(d.node) + '</span>' +
+                 '<span class="grow"><span class="path">' + esc(d.path) + '</span></span>' +
+                 '</div>';
+        }).join('') + '</div>';
+        h += foot(true, 'Continue', true);
+        break;
+
+      /* ---------- ⑤ 练习 ---------- */
+      case 4:
+        h += '<h3 class="hd">Practice</h3>';
+        h += PRACS.map(function (p) {
+          return '<div class="box"><div class="line"><span class="nd">' + esc(p.node) +
+            '</span><span class="grow"></span><span class="mk">' + p.max + '</span></div>' +
+            '<div class="q" style="margin:.7rem 0 0"><b>' + esc(p.command) + '</b> ' +
+            esc(p.question) + '</div>' +
+            '<ul class="mps">' + p.mps.map(function (m) {
+              return '<li class="ro"><button class="tick n" disabled>·</button>' +
+                '<span class="id">' + esc(m.id) + '</span>' +
+                '<span class="tx">' + esc(m.text) + '</span></li>';
+            }).join('') + '</ul></div>';
+        }).join('');
+        h += foot(true, 'Continue', true);
+        break;
+
+      /* ---------- ⑥ 审核 ---------- */
+      case 5:
+        h += reviewBody();
+        break;
+
+      /* ---------- ⑦ 下发 ---------- */
+      case 6:
+        h += '<h3 class="hd">Release</h3>';
+        h += '<div class="line"><span class="nd">' + GRADES.length + ' questions</span>' +
+             '<span class="grow"></span><span class="mk">' + paperScore() + '</span></div>';
+        var tally = {accept: 0, edit: 0, override: 0};
+        Object.keys(S.dec).forEach(function (k) { tally[S.dec[k].d]++; });
+        h += '<div class="rows" style="margin-top:1rem">' +
+          '<div class="row"><span class="grow">Accepted</span><span class="nd">' +
+            tally.accept + '</span></div>' +
+          '<div class="row"><span class="grow">Edited</span><span class="nd">' +
+            tally.edit + '</span></div>' +
+          '<div class="row"><span class="grow">Overridden</span><span class="nd">' +
+            tally.override + '</span></div></div>';
+        h += '<div class="acts"><button class="pick" data-go="back">Back</button>' +
+             '<span class="grow"></span>' +
+             (S.released
+               ? '<span class="ok">Released to ' + esc(S.who) + '</span>'
+               : '<button class="btn" data-go="release">Release to ' + esc(S.who) +
+                 '</button>') + '</div>';
+        break;
+    }
+
+    $('mBody').innerHTML = h;
+    wire();
+  }
+
+  /* ---------- ⑥ 的单条审核 ---------- */
+  function reviewBody() {
+    var idx = S.i, it = D.items[idx], h = '';
+    h += '<div class="subbar"><span class="prog">' + (idx + 1) + ' of ' + N + '</span>' +
+         '<span class="grow"></span>' +
+         '<button class="arrow" data-go="iprev"' + (idx === 0 ? ' disabled' : '') +
+         '>&larr;</button>' +
+         '<button class="arrow" data-go="inext"' + (idx === N - 1 ? ' disabled' : '') +
+         '>&rarr;</button></div>';
+
+    if (it.kind === 'grade') {
+      var sc = scoreOf(it, idx);
+      var cls = sc === 0 ? ' zero' : (sc === it.max ? ' full' : '');
+      h += '<div class="qid">' + esc(it.qid) + '</div>' +
+           '<div class="qtop"><div class="q"><b>' + esc(it.command) + '</b> ' +
+           esc(it.question) + '</div><span class="mk' + cls + '">' + sc + ' / ' +
+           it.max + '</span></div>';
+      h += it.answer ? '<div class="resp" id="resp">' + esc(it.answer) + '</div>'
+                     : '<div class="resp empty">No answer written</div>';
+      h += '<ul class="mps">' + it.mps.map(function (m, j) {
+        var mk = S.marks[idx];
+        var on = mk && mk[j] !== undefined ? mk[j] : m.awarded;
+        return '<li data-mp="' + j + '"' + (S.sel === j ? ' class="sel"' : '') + '>' +
+          '<button class="tick ' + (on ? 'y' : 'n') + (on !== m.awarded ? ' ch' : '') +
+          '" data-tk="' + j + '">' + (on ? '✓' : '✗') + '</button>' +
+          '<span class="id">' + esc(m.id) + '</span>' +
+          '<span class="tx">' + esc(m.text) + '</span></li>';
+      }).join('') + '</ul>';
+      (it.diags || []).forEach(function (g) {
+        h += '<details class="dg"><summary><span class="tag' +
+          (/word/i.test(g.type) ? ' w' : '') + '">' + esc(g.type) + '</span>' +
+          '<span class="nd">' + esc(g.node) + '</span></summary>' +
+          '<div class="in">' + (g.note ? esc(g.note) : '') +
+          '<div class="path">' + esc(g.path) + '</div></div></details>';
+      });
+    } else if (it.kind === 'diagnosis') {
+      h += '<div class="qid">' + esc(it.qid) + '</div>' +
+           '<div class="qtop"><div class="q"><span class="tag' +
+           (/word/i.test(it.type) ? ' w' : '') + '">' + esc(it.type) + '</span></div>' +
+           '<span class="nd">' + esc(it.node) + '</span></div>';
+      h += '<div class="resp">' + esc(it.evidence) + '</div>';
+      if (it.note) { h += '<div class="hintline">' + esc(it.note) + '</div>'; }
+      h += '<div class="path">' + esc(it.path) + '</div>';
+    } else {
+      h += '<div class="qid">Practice · ' + esc(it.node) + '</div>' +
+           '<div class="qtop"><div class="q"><b>' + esc(it.command) + '</b> ' +
+           esc(it.question) + '</div><span class="mk">' + it.max + '</span></div>';
+      h += '<ul class="mps">' + it.mps.map(function (m) {
+        return '<li class="ro"><button class="tick n" disabled>·</button>' +
+          '<span class="id">' + esc(m.id) + '</span>' +
+          '<span class="tx">' + esc(m.text) + '</span></li>';
+      }).join('') + '</ul>';
+    }
+
+    var d = S.dec[idx];
+    h += '<div class="acts">' +
+      ['accept', 'edit', 'override'].map(function (k) {
+        return '<button class="pick' + (d && d.d === k ? ' on' : '') +
+          '" data-d="' + k + '">' + k.charAt(0).toUpperCase() + k.slice(1) +
+          '</button>';
+      }).join('') +
+      '<span class="grow"></span>' +
+      (reviewed() ? '<button class="btn" data-go="next">Continue</button>'
+                  : '<span class="state">' + (N - decided()) + ' left</span>') +
+      '</div>';
+    if (d && d.d === 'edit') {
+      h += '<textarea class="edit" id="ed" placeholder="What did you change?">' +
+        esc(d.note || '') + '</textarea>';
+    }
+    return h;
+  }
+
+  /* ---------- 绑定 ---------- */
+  function wire() {
+    var body = $('mBody');
+
+    var drop = $('drop');
+    if (drop) {
+      drop.addEventListener('click', function () { S.uploaded = true; renderStep(); });
+      drop.addEventListener('dragover', function (e) {
+        e.preventDefault(); drop.classList.add('over');
+      });
+      drop.addEventListener('dragleave', function () { drop.classList.remove('over'); });
+      drop.addEventListener('drop', function (e) {
+        e.preventDefault(); S.uploaded = true; renderStep();
+      });
+    }
+
+    body.querySelectorAll('[data-go]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var g = b.dataset.go;
+        if (g === 'back') { goStep(S.step - 1); }
+        else if (g === 'next') { goStep(S.step + 1); }
+        else if (g === 'confirm') { S.confirmed = true; goStep(1); }
+        else if (g === 'iprev') { goItem(S.i - 1); }
+        else if (g === 'inext') { goItem(S.i + 1); }
+        else if (g === 'release') { S.released = true; renderStep(); }
+      });
+    });
+
+    body.querySelectorAll('.pick[data-d]').forEach(function (b) {
+      b.addEventListener('click', function () { decide(b.dataset.d); });
+    });
+    body.querySelectorAll('li[data-mp]').forEach(function (li) {
+      li.addEventListener('click', function (e) {
+        if (e.target.closest('.tick')) { return; }
+        pickMp(+li.dataset.mp);
+      });
+    });
+    body.querySelectorAll('.tick[data-tk]').forEach(function (b) {
+      b.addEventListener('click', function () { toggle(+b.dataset.tk); });
+    });
+    var ed = $('ed');
+    if (ed) {
+      ed.addEventListener('input', function () {
+        if (S.dec[S.i]) { S.dec[S.i].note = ed.value; }
+      });
+    }
+  }
+
+  function pickMp(j) {
+    var it = D.items[S.i];
+    if (it.kind !== 'grade') { return; }
+    S.sel = S.sel === j ? null : j;
+    var resp = $('resp');
+    if (resp) {
+      var ans = it.answer || '';
+      var q = S.sel === null ? '' : (it.mps[j].evidence || '');
+      var at = q ? ans.indexOf(q) : -1;
+      resp.innerHTML = at < 0 ? esc(ans)
+        : esc(ans.slice(0, at)) + '<span class="ev lit">' + esc(q) + '</span>' +
+          esc(ans.slice(at + q.length));
+    }
+    $('mBody').querySelectorAll('li[data-mp]').forEach(function (li) {
+      li.classList.toggle('sel', +li.dataset.mp === S.sel);
+    });
+  }
+
+  function toggle(j) {
+    var idx = S.i, it = D.items[idx];
+    if (it.kind !== 'grade') { return; }
+    var mk = S.marks[idx] || (S.marks[idx] = {});
+    var cur = mk[j] !== undefined ? mk[j] : it.mps[j].awarded;
+    mk[j] = !cur;
+    /* 改了评分点就是一次 edit；改回原样，那条 edit 自己撤销 ——
+       没有改动不会被记成改过。 */
+    var changed = it.mps.some(function (m, k) {
+      var v = mk[k] !== undefined ? mk[k] : m.awarded;
+      return v !== m.awarded;
+    });
+    if (changed) { S.dec[idx] = {d: 'edit', note: (S.dec[idx] || {}).note || ''}; }
+    else if (S.dec[idx] && S.dec[idx].d === 'edit') { delete S.dec[idx]; }
+    renderStep();
+  }
+
+  function decide(k) {
+    var idx = S.i;
+    if (k === 'accept') { delete S.marks[idx]; }
+    S.dec[idx] = {d: k, note: (S.dec[idx] || {}).note || ''};
+    if (k !== 'edit' && S.i < N - 1) { S.i++; S.sel = null; }
+    renderStep();
+  }
+
+  function goItem(n) {
+    S.i = Math.max(0, Math.min(N - 1, n));
+    S.sel = null;
+    renderStep();
+  }
+
+  /* ---------- Today ---------- */
+  function renderToday() {
+    $('tTitle').textContent = S.who + ' · ' + D.unit;
+    $('tSub').textContent = S.released
+      ? 'Released · ' + D.date
+      : (!S.confirmed ? GRADES.length + ' questions · not started'
+                      : decided() + ' of ' + N + ' items decided');
+    $('tStart').textContent = S.confirmed ? 'Open' : 'Start';
+
+    $('tWeak').innerHTML = D.weak.map(function (w) {
+      return '<div class="row"><span class="who">' + esc(S.who) + '</span>' +
+        '<span class="nd">' + esc(w.node) + '</span>' +
+        '<span class="grow">' + esc(w.title) + '</span>' +
+        '<span class="note">' + esc(w.note) + '</span></div>';
+    }).join('');
+
+    $('tTot').innerHTML =
+      '<div><b>' + (S.confirmed ? 1 : 0) + '</b>paper marked</div>' +
+      '<div><b>' + (N - decided()) + '</b>to review</div>' +
+      '<div><b>' + (S.released ? 1 : 0) + '</b>released</div>';
+  }
+
+  /* ---------- Students ---------- */
+  function renderStudents() {
+    var order = D.roster.slice().sort();
+    $('sWho').innerHTML = order.map(function (s) {
+      return '<button class="chip' + (s === S.who ? ' sel' : '') +
+        '" data-w="' + esc(s) + '">' + esc(s) + '</button>';
+    }).join('');
+    $('sWho').querySelectorAll('[data-w]').forEach(function (b) {
+      b.addEventListener('click', function () { S.who = b.dataset.w; renderStudents(); });
+    });
+
+    var mine = S.who === D.student;
+    $('sName').textContent = S.who;
+    $('sSub').textContent = mine
+      ? '1 paper · ' + D.objectives + ' objectives'
+      : 'No paper uploaded';
+
+    $('sWeak').innerHTML = mine ? D.weak.map(function (w) {
+      return '<div class="row"><span class="nd">' + esc(w.node) + '</span>' +
+        '<span class="grow">' + esc(w.title) + '</span>' +
+        '<span class="note">' + esc(w.note) + '</span></div>';
+    }).join('') : '<div class="row"><span class="grow">&mdash;</span></div>';
+
+    var abs = mine ? D.absent : [];
+    $('sAbsHead').style.display = abs.length ? '' : 'none';
+    $('sAbs').style.display = abs.length ? '' : 'none';
+    $('sAbs').innerHTML = abs.map(function (a) {
+      return '<div class="row"><span class="nd">' + esc(a.node) + '</span>' +
+        '<span class="grow">' + esc(a.title) + '</span>' +
+        '<span class="note">' + esc(a.qids.join(', ')) + '</span></div>';
+    }).join('');
+
+    $('sHist').innerHTML = mine ? D.history.map(function (h) {
+      return '<div class="h"><span class="d">' + esc(h.date) + '</span>' +
+        '<span>' + esc(h.unit) + '</span>' +
+        '<span class="st">' + (S.released ? 'Released' : 'In progress') + '</span></div>';
+    }).join('') : '<div class="h"><span class="grow">&mdash;</span></div>';
+  }
+
+  /* ---------- 键盘 ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (/INPUT|TEXTAREA/.test(e.target.tagName)) { return; }
+    if (e.key === '?') { $('ovl').classList.add('on'); return; }
+    if (e.key === 'Escape') { $('ovl').classList.remove('on'); return; }
+    if (!document.querySelector('[data-view="marking"]').classList.contains('on')) { return; }
+    if (S.step !== 5) { return; }
+    var it = D.items[S.i];
+    if (e.key === 'j' || e.key === 'J' || e.key === 'ArrowRight') { goItem(S.i + 1); }
+    else if (e.key === 'k' || e.key === 'K' || e.key === 'ArrowLeft') { goItem(S.i - 1); }
+    else if (e.key === 'Enter') { goItem(S.i + 1); }
+    else if (e.key === 'a' || e.key === 'A') { decide('accept'); }
+    else if (e.key === 'e' || e.key === 'E') { decide('edit'); }
+    else if (e.key === 'o' || e.key === 'O') { decide('override'); }
+    else if (e.key === ' ' && S.sel !== null) { e.preventDefault(); toggle(S.sel); }
+    else if (/^[1-9]$/.test(e.key) && it.kind === 'grade') {
+      var j = +e.key - 1;
+      if (j < it.mps.length) { pickMp(j); }
+    }
+  });
+
+  /* ---------- 入口 ---------- */
+  $('tStart').addEventListener('click', function () { location.hash = 'marking'; });
+  $('sNew').addEventListener('click', function () {
+    S.who = S.who; S.step = 0; location.hash = 'marking';
+  });
+  $('keysBtn').addEventListener('click', function () { $('ovl').classList.add('on'); });
+  $('ovlX').addEventListener('click', function () { $('ovl').classList.remove('on'); });
+  $('ovl').addEventListener('click', function (e) {
+    if (e.target === $('ovl')) { $('ovl').classList.remove('on'); }
+  });
+
+  $('navClass').textContent = D.classname;
+  $('barClass').textContent = D.classname;
+  $('barClass2').textContent = D.classname;
+  $('navCount').textContent = D.roster.length + ' students';
+
+  route();
+})();
+</script>
+</body>
+</html>
